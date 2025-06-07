@@ -1,4 +1,5 @@
 import json
+import base64
 import tornado.ioloop
 import tornado.web
 import pymysql
@@ -21,24 +22,33 @@ class EmployeesHandler(BaseHandler):
         cursor.execute("SELECT * FROM employees")
         employees = cursor.fetchall()
         conn.close()
+        for emp in employees:
+            if emp["image"]:
+                emp["image"] = base64.b64encode(emp["image"]).decode("utf-8")
+            else:
+                emp["image"] = None
         self.write(json.dumps(employees))
 
     def post(self):
-        data = json.loads(self.request.body)
-        name = data["name"]
-        position = data["position"]
-        salary = float(data["salary"])
-        experience = data["experience"]
-        email = data["email"]
+        name = self.get_body_argument("name")
+        position = self.get_body_argument("position")
+        salary = float(self.get_body_argument("salary"))
+        experience = self.get_body_argument("experience")
+        email = self.get_body_argument("email")
+        phonenum = self.get_body_argument("phonenum")
+        image_file = self.request.files.get("image", [None])[0]
+        image_data = image_file["body"] if image_file else None
         conn = get_connection()
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM employees WHERE email = %s", (email))
         if cursor.fetchone():
             conn.close()
-            self.set_status(400)
+            self.set_status(409)
             self.write({"error": "Email already exists"})
             return
-        cursor.execute("INSERT INTO employees (name, position, salary, experience, email) VALUES (%s, %s, %s, %s, %s)", (name, position, salary, experience, email))
+        cursor.execute(
+            "INSERT INTO employees (name, position, salary, experience, email, phonenum, image) VALUES (%s, %s, %s, %s, %s, %s, %s)", (name, position, salary, experience, email, phonenum, image_data)
+        )
         conn.commit()
         conn.close()
         self.write({"message": "Employee added successfully"})
@@ -51,6 +61,10 @@ class EmployeeHandler(BaseHandler):
         employee = cursor.fetchone()
         conn.close()
         if employee:
+            if employee["image"]:
+                employee["image"] = base64.b64encode(employee["image"]).decode("utf-8")
+            else:
+                employee["image"] = None
             self.write(json.dumps(employee))
         else:
             self.set_status(404)
