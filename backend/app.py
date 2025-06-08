@@ -46,9 +46,7 @@ class EmployeesHandler(BaseHandler):
             self.set_status(409)
             self.write({"error": "Email already exists"})
             return
-        cursor.execute(
-            "INSERT INTO employees (name, position, salary, experience, email, phonenum, image) VALUES (%s, %s, %s, %s, %s, %s, %s)", (name, position, salary, experience, email, phonenum, image_data)
-        )
+        cursor.execute("INSERT INTO employees (name, position, salary, experience, email, phonenum, image) VALUES (%s, %s, %s, %s, %s, %s, %s)", (name, position, salary, experience, email, phonenum, image_data))
         conn.commit()
         conn.close()
         self.write({"message": "Employee added successfully"})

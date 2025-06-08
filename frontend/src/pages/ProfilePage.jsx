@@ -7,6 +7,7 @@ const ProfilePage = () => {
   const { id } = useParams();
   const [employee, setEmployee] = useState(null);
   const navigate = useNavigate();
+
   useEffect(() => {
     const fetchEmployee = async () => {
       try {
@@ -18,20 +19,17 @@ const ProfilePage = () => {
     };
     fetchEmployee();
   }, [id]);
-  if (!employee) return <div className="loading">Loading...</div>;
+
+  if (!employee) return (<div className="loading">Loading...</div>);
 
   return (
     <div className="profile-container">
-      <button className="back-button" onClick={() => navigate("/")}>
-        ← Back to Home
-      </button>
+      <button className="back-button" onClick={() => navigate("/")}>← Back to Home</button>
       <div className="profile-card">
-        {(
-          <img
-            className="profile-image"
-            src={employee.image ? (`data:image/jpeg;base64,${employee.image}`) : require("../assets/defaultImage.jpg")}
-            alt="Employee"/>
-        )}
+        <img
+          className="profile-image"
+          src={employee.image ? (`data:image/jpeg;base64,${employee.image}`) : require("../assets/defaultImage.jpg")}
+          alt="Employee"/>
         <div className="profile-details">
           <div className="profile-left">
             <p className="employee-details"><strong>Name:</strong></p>
