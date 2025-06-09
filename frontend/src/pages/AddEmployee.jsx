@@ -5,6 +5,7 @@ import './AddEmployee.css';
 
 const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 const isValidPhone = (phone) => /^\d{10}$/.test(phone);
+
 const formatName = (rawName) => {
   return rawName.split(/[\s.]+|(?<=\.)\s*/).filter(Boolean).map(part => {
     if(part.length === 1) return part.toUpperCase() + ".";

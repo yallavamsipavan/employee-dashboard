@@ -9,7 +9,6 @@ html, body, #root {
 
 body {
   font-family: Arial, sans-serif;
-  background-color: var(--body-bg-color);
   margin: 0;
   padding: 0;
 }

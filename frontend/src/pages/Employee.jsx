@@ -4,7 +4,6 @@ import "./Employee.css";
 
 const Employee = ({ emp, onDelete }) => {
   const navigate = useNavigate();
-
   return (
     <tr className="employee-row">
       <td>{emp.name}</td>
