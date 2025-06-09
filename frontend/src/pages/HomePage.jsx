@@ -1,12 +1,10 @@
 import React from "react";
-import './HomePage.css';
-import EmployeeList from './EmployeeList';
+import "./HomePage.css";
 
 const HomePage = () => {
   return (
-    <div className="homepage-container">
-      <h2 className="homepage-title">Employee Dashboard</h2>
-      <EmployeeList />
+    <div className="home-container">
+        <h2>Welcome to Employee Dashboard</h2>
     </div>
   );
 };

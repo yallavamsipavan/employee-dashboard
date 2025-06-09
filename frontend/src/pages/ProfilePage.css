@@ -1,16 +1,18 @@
+@import url('./rootcss.css');
+
 .profile-container {
   max-width: 800px;
   width: fit-content;
   margin: 50px auto;
   padding: 40px;
-  background-color: #fefefe;
+  background-color: var(--white-fe);
   border-radius: 16px;
-  box-shadow: 0 0px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0px 20px var(--box-shadow-strong);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .back-button {
-  background-color: #4caf50;
+  background-color: var(--green);
   color: white;
   padding: 10px 18px;
   border: none;
@@ -23,7 +25,7 @@
 }
 
 .back-button:hover {
-  background-color: #43a047;
+  background-color: var(--green-dark);
   transform: translateX(-2px);
 }
 
@@ -41,7 +43,7 @@
   height: 200px;
   border-radius: 12px;
   object-fit: cover;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 16px var(--box-shadow-light);
 }
 
 .profile-details {
@@ -62,14 +64,14 @@
 }
 
 .profile-details strong {
-  color: #444;
+  color: var(--text-dark-gray);
 }
 
 .loading {
   text-align: center;
   margin-top: 100px;
   font-size: 1.2rem;
-  color: #888;
+  color: var(--text-light-gray);
 }
 
 @media (max-width: 600px) {

@@ -1,20 +1,22 @@
+@import url('./rootcss.css');
+
 .employee-row {
-  background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  background-color: var(--white);
+  box-shadow: 0 4px 8px var(--shadow-light);
   margin-bottom: 10px;
   border-radius: 6px;
   transition: transform 0.2s;
 }
 
 .employee-row:hover {
-  background-color: #f5f5f5;
+  background-color: var(--hover-bg);
   transform: scale(1.01);
 }
 
 .employee-row td {
   padding: 15px;
-  background-color: white;
-  border-bottom: none; 
+  background-color: var(--white);
+  border-bottom: none;
 }
 
 .employee-table tbody .employee-row:not(:last-child) {
@@ -32,13 +34,13 @@
 }
 
 .btn-profile {
-  background-color: #2196f3;
-  color: white;
+  background-color: var(--blue);
+  color: var(--button-text-color);
 }
 
 .btn-delete {
-  background-color: #f44336;
-  color: white;
+  background-color: var(--red);
+  color: var(--button-text-color);
 }
 
 .btn:hover {

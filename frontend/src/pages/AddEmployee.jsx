@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import './AddEmployee.css';
 
 const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -47,26 +48,31 @@ function AddEmployee() {
         body: data
       });
       if(res.status === 409) setError("Email already exists");
-      else navigate("/");
+      else navigate("/dashboard");
     } catch (err) {
       setError("Something went wrong. Please try again");
     }
   };
 
   return (
-    <div className="add-container">
-      <h2>Add Employee</h2>
-      {error && <p className="error-message">{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <input name="name" placeholder="Name" onChange={handleChange} required /><br />
-        <input name="email" placeholder="Email" onChange={handleChange} required /><br />
-        <input name="position" placeholder="Position" onChange={handleChange} required /><br />
-        <input name="salary" type="number" placeholder="Salary" onChange={handleChange} required /><br />
-        <input name="experience" type="number" placeholder="Experience" onChange={handleChange} required /><br />
-        <input name="phonenum" placeholder="Contact Number" onChange={handleChange} required /><br />
-        <input type="file" name="image" accept="image/*" onChange={handleFileChange} /><br />
-        <button type="submit">Add</button>
-      </form>
+    <div>
+      <Helmet>
+        <title>Add Employee</title>
+      </Helmet>
+      <div className="add-container">
+        <h2>Add Employee</h2>
+        {error && <p className="error-message">{error}</p>}
+        <form onSubmit={handleSubmit}>
+          <input name="name" placeholder="Name" onChange={handleChange} required /><br />
+          <input name="email" placeholder="Email" onChange={handleChange} required /><br />
+          <input name="position" placeholder="Position" onChange={handleChange} required /><br />
+          <input name="salary" type="number" placeholder="Salary" onChange={handleChange} required /><br />
+          <input name="experience" type="number" placeholder="Experience" onChange={handleChange} required /><br />
+          <input name="phonenum" placeholder="Contact Number" onChange={handleChange} required /><br />
+          <input type="file" name="image" accept="image/*" onChange={handleFileChange} /><br />
+          <button type="submit">Add</button>
+        </form>
+      </div>
     </div>
   );
 }

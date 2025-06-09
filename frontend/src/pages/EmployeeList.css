@@ -1,7 +1,9 @@
+@import url('./rootcss.css');
+
 .employee-table-wrapper {
   flex: 1;
   overflow-y: auto;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   max-height: 100%;
 }
@@ -16,19 +18,19 @@
   position: sticky;
   top: 0;
   z-index: 2;
-  background-color: #4caf50;
-  color: white;
+  background-color: var(--green);
+  color: var(--white);
 }
 
 .employee-table th, .employee-table td {
   text-align: center;
   padding: 15px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--border-color);
   word-wrap: break-word;
 }
 
 .employee-table tbody tr:hover {
-  background-color: #f1f1f1;
+  background-color: var(--light-gray);
   transition: background-color 0.3s;
 }
 
@@ -43,18 +45,18 @@
 }
 
 .btn-profile {
-  background-color: #2196f3;
-  color: white;
+  background-color: var(--blue);
+  color: var(--white);
 }
 
 .btn-delete {
-  background-color: #f44336;
-  color: white;
+  background-color: var(--red);
+  color: var(--white);
 }
 
 .btn-filter {
-  background-color: #4caf50;
-  color: white;
+  background-color: var(--green);
+  color: var(--white);
 }
 
 .btn:hover {
@@ -72,7 +74,7 @@
 .search-input {
   width: 30%;
   padding: 10px 14px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--gray-light);
   border-radius: 8px;
   font-size: 16px;
   outline: none;
@@ -80,17 +82,17 @@
 }
 
 .search-input:focus {
-  border-color: #4caf50;
+  border-color: var(--green);
 }
 
 .filter-panel {
-  background-color: #fff;
-  border: 1px solid #ccc;
+  background-color: var(--white);
+  border: 1px solid var(--gray-light);
   padding: 16px;
   border-radius: 8px;
   max-width: 400px;
   margin-bottom: 16px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px var(--box-shadow);
 }
 
 .filter-row {
@@ -110,7 +112,7 @@
   padding: 8px;
   font-size: 14px;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--gray-light);
   outline: none;
 }
 
@@ -128,8 +130,8 @@
   cursor: pointer;
   border: none;
   transition: transform 0.2s ease-in-out;
-  background-color: #f44336;
-  color: white;
+  background-color: var(--red);
+  color: var(--white);
 }
 
 .small-btn-apply {
@@ -140,8 +142,8 @@
   cursor: pointer;
   border: none;
   transition: transform 0.2s ease-in-out;
-  background-color: #2196f3;
-  color: white;
+  background-color: var(--blue);
+  color: var(--white);
 }
 
 .small-btn:hover {
@@ -155,7 +157,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4);
+  background: var(--modal-overlay);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -163,19 +165,19 @@
 }
 
 .modal-content {
-  background: #fff;
+  background: var(--white);
   padding: 24px;
   border-radius: 10px;
   max-width: 400px;
   width: 90%;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 15px var(--box-shadow);
   animation: fadeIn 0.3s ease-in-out;
 }
 
 .modal-content h3 {
   margin-top: 0;
   margin-bottom: 16px;
-  color: #333;
+  color: var(--text-color-dark);
   text-align: center;
 }
 

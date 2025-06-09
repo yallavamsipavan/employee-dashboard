@@ -1,16 +1,18 @@
+@import url('./rootcss.css');
+
 .add-container {
   max-width: 400px;
   margin: 40px auto;
-  background-color: #ffffff;
+  background-color: var(--white);
   padding: 30px 25px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px var(--container-shadow-color);
 }
 
 .add-container h2 {
   text-align: center;
   margin-bottom: 20px;
-  color: #2c3e50;
+  color: var(--black);
 }
 
 .add-container form {
@@ -22,33 +24,33 @@
   margin-bottom: 15px;
   padding: 10px;
   font-size: 15px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--light-grey);
   border-radius: 6px;
   transition: border-color 0.3s;
 }
 
 .add-container input:focus {
-  border-color: #3498db;
+  border-color: var(--light-blue);
   outline: none;
 }
 
 .add-container button {
   padding: 10px;
   font-size: 16px;
-  background-color: #2ecc71;
+  background-color: var(--light-green);
   border: none;
   border-radius: 6px;
-  color: white;
+  color: var(--button-text);
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .add-container button:hover {
-  background-color: #27ae60;
+  background-color: var(--button-hover-bg);
 }
 
 .error-message {
-  color: red;
+  color: var(--red);
   margin-bottom: 10px;
   text-align: center;
 }

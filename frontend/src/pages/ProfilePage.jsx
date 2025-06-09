@@ -24,7 +24,7 @@ const ProfilePage = () => {
 
   return (
     <div className="profile-container">
-      <button className="back-button" onClick={() => navigate("/")}>← Back to Home</button>
+      <button className="back-button" onClick={() => navigate("/dashboard")}>←</button>
       <div className="profile-card">
         <img
           className="profile-image"

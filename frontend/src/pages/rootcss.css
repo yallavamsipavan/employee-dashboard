@@ -1,0 +1,49 @@
+:root {
+  --dark-green: #0b3211;
+  --white: #ffffff;
+  --body-bg-color: #f4f6f8;
+  --box-shadow-color: white;
+  --text-shadow-color: var(--dark-green);
+
+  --container-shadow-color: rgba(0, 0, 0, 0.1);
+  --black: #000;
+  --light-grey: #ccc;
+  --light-blue: #3498db;
+  --light-green: #22933a;
+  --button-hover-bg: var(--light-green);
+  --button-text: var(--white);
+  --red: red;
+
+  --homepage-bg: #f9f9f9;
+  --homepage-shadow: var(--container-shadow-color);
+  --grey: #333;
+  --homepage-border-color: var(--light-green);
+  --font-family-base: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  --shadow-light: var(--container-shadow-color);
+  --hover-bg: var(--homepage-bg);
+  --blue: var(--light-blue);
+  --button-text-color: var(--white);
+
+  --light-gray: var(--light-grey);
+  --border-color: var(--light-gray);
+  --gray-light: var(--light-gray);
+  --text-color-dark: var(--grey);
+  --box-shadow: var(--container-shadow-color);
+  --modal-overlay: rgba(0, 0, 0, 0.4);
+
+  --homepage-background: var(--body-bg-color);
+
+  --white-fe: #fefefe;
+  --green: var(--light-green);
+  --green-dark: var(--light-green);
+  --text-dark-gray: var(--grey);
+  --text-light-gray: #888;
+  --box-shadow-strong: var(--modal-overlay);
+  --box-shadow-light: --container-shadow-color;
+}
+
+::selection {
+    background-color: green;
+    color: white;
+}
