@@ -5,14 +5,11 @@ import AddEmployee from './pages/AddEmployee';
 import ProfilePage from './pages/ProfilePage';
 import DashBoard from './pages/DashBoard';
 import './App.css';
-import { Helmet } from 'react-helmet';
 
 function App() {
   return (
       <div>
-        <Helmet>
-          <title>Employee Dashboard</title>
-        </Helmet>
+        <title>Employee Dashboard</title>
         <Router>
           <nav className="navbar">
             <Link className="navLink" to="/">Home</Link>

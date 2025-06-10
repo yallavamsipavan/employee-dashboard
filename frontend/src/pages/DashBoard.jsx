@@ -5,6 +5,7 @@ import EmployeeList from './EmployeeList';
 const HomePage = () => {
   return (
     <div className="homepage-container">
+      <title>Dashboard</title>
       <h2 className="homepage-title">Employee Dashboard</h2>
       <EmployeeList />
     </div>

@@ -67,6 +67,10 @@
   color: var(--text-dark-gray);
 }
 
+.profile-right {
+  padding-left: 20px;
+}
+
 .loading {
   text-align: center;
   margin-top: 100px;

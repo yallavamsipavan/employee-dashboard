@@ -191,3 +191,13 @@
     transform: scale(1);
   }
 }
+
+.small-btn-cancel {
+  background-color: var(--red);
+  color: var(--white);
+}
+
+.small-btn-delete {
+  background-color: var(--green);
+  color: var(--white);
+}

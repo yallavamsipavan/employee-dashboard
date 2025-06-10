@@ -10,6 +10,7 @@ const EmployeeList = () => {
   const [showFilter, setShowFilter] = useState(false);
   const [expMin, setExpMin] = useState("");
   const [expMax, setExpMax] = useState("");
+  const [confirmDelete, setConfirmDelete] = useState(null);
 
   const fetchEmployees = async () => {
     try {
@@ -21,6 +22,16 @@ const EmployeeList = () => {
     }
   };
 
+  const deleteEmployee = async (id) => {
+    try {
+      await axios.delete(`http://localhost:8000/employees/${id}`);
+      fetchEmployees();
+      setConfirmDelete(null);
+    } catch (err) {
+      console.error(`Error deleting employee: ${err}`);
+    }
+  };
+
   useEffect(() => {
     fetchEmployees();
   }, []);
@@ -28,8 +39,8 @@ const EmployeeList = () => {
   const applyFilters = () => {
     let results = employees;
     if (searchTerm.trim()) results = results.filter(emp => emp.name.toLowerCase().includes(searchTerm.toLowerCase()));
-    if(expMin) results = results.filter(emp => +emp.experience >= +expMin);
-    if(expMax) results = results.filter(emp => +emp.experience <= +expMax);
+    if (expMin) results = results.filter(emp => +emp.experience >= +expMin);
+    if (expMax) results = results.filter(emp => +emp.experience <= +expMax);
     setFiltered(results);
     setShowFilter(false);
   };
@@ -63,7 +74,7 @@ const EmployeeList = () => {
             <div className="filter-row">
               <label>Experience:</label>
               <input type="number" placeholder="Min" value={expMin} onChange={(e) => setExpMin(e.target.value)} />
-              <input type="number" placeholder="Max" value={expMax} onChange={(e) => setExpMax(e.target.value)}/>
+              <input type="number" placeholder="Max" value={expMax} onChange={(e) => setExpMax(e.target.value)} />
             </div>
             <div className="filter-actions">
               <button className="btn small-btn-reset" onClick={resetFilters}>Reset</button>
@@ -85,11 +96,24 @@ const EmployeeList = () => {
           </thead>
           <tbody>
             {filtered.map(emp => (
-              <Employee className="employee-row" key={emp.id} emp={emp} onDelete={fetchEmployees} />
+              <Employee className="employee-row" key={emp.id} emp={emp} onDelete={() => setConfirmDelete(emp)} />
             ))}
           </tbody>
         </table>
       </div>
+
+      {confirmDelete && (
+        <div className="modal-overlay" onClick={() => setConfirmDelete(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <h3>Confirm Deletion</h3>
+            <p>Do you want to delete <strong>{confirmDelete.name}</strong>?</p>
+            <div className="filter-actions">
+              <button className="btn small-btn-cancel" onClick={() => setConfirmDelete(null)}>Cancel</button>
+              <button className="btn small-btn-delete" onClick={() => deleteEmployee(confirmDelete.id)}>Okay</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

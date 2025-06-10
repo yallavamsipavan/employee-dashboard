@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
 import './AddEmployee.css';
 
 const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -8,14 +7,14 @@ const isValidPhone = (phone) => /^\d{10}$/.test(phone);
 
 const formatName = (rawName) => {
   return rawName.split(/[\s.]+|(?<=\.)\s*/).filter(Boolean).map(part => {
-    if(part.length === 1) return part.toUpperCase() + ".";
-    if(part.endsWith(".")) return part[0].toUpperCase() + ".";
-    return part[0].toUpperCase() + part.slice(1).toLowerCase();
-  }).join(" ");
+      if (part.length === 1) return part.toUpperCase() + ".";
+      if (part.endsWith(".")) return part[0].toUpperCase() + ".";
+      return part[0].toUpperCase() + part.slice(1).toLowerCase();
+    }).join(" ");
 };
 
 function AddEmployee() {
-  const [form, setForm] = useState({ name: '', email: '', position: '', salary: '', experience: '', phonenum: ''});
+  const [form, setForm] = useState({ name: '', email: '', position: '', salary: '', experience: '', phonenum: '' });
   const [image, setImage] = useState(null);
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -28,27 +27,45 @@ function AddEmployee() {
   const handleFileChange = (e) => {
     setImage(e.target.files[0]);
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formattedName = formatName(form.name);
-    if(!isValidEmail(form.email)) {
-      setError("Invalid email format");
+    const rawName = form.name;
+    if (/\d/.test(rawName)) {
+      setError("Name should not contain numbers");
       return;
     }
-    if(!isValidPhone(form.phonenum)) {
+    if (rawName.length > 100) {
+      setError("Name should be at most 100 characters");
+      return;
+    }
+    if (!/^\d+$/.test(form.phonenum)) {
+      setError("Phone number should contain only digits");
+      return;
+    }
+    if (!isValidPhone(form.phonenum)) {
       setError("Phone number must be exactly 10 digits");
       return;
     }
+    if (!isValidEmail(form.email)) {
+      setError("Invalid email format");
+      return;
+    }
+
+    const formattedName = formatName(rawName);
+
     const data = new FormData();
-    Object.entries({ ...form, name: formattedName }).forEach(([key, value]) => data.append(key, value));
-    if(image) data.append('image', image);
+    Object.entries({ ...form, name: formattedName }).forEach(([key, value]) =>
+      data.append(key, value)
+    );
+    if (image) data.append('image', image);
+
     try {
       const res = await fetch(`http://localhost:8000/employees`, {
         method: 'POST',
         body: data
       });
-      if(res.status === 409) setError("Email already exists");
+      if (res.status === 409) setError("Email already exists");
       else navigate("/dashboard");
     } catch (err) {
       setError("Something went wrong. Please try again");
@@ -57,9 +74,7 @@ function AddEmployee() {
 
   return (
     <div>
-      <Helmet>
-        <title>Add Employee</title>
-      </Helmet>
+      <title>Add Employee</title>
       <div className="add-container">
         <h2>Add Employee</h2>
         {error && <p className="error-message">{error}</p>}

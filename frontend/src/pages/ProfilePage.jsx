@@ -24,6 +24,7 @@ const ProfilePage = () => {
 
   return (
     <div className="profile-container">
+      <title>{employee.name}</title>
       <button className="back-button" onClick={() => navigate("/dashboard")}>←</button>
       <div className="profile-card">
         <img
