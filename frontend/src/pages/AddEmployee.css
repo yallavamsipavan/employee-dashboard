@@ -34,8 +34,37 @@
   outline: none;
 }
 
-.add-container button {
+.buttons {
   padding: 10px;
+  /* background-color: aqua; */
+  justify-content: space-between;
+}
+
+.reset-button {
+  width: 45%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: var(--red);
+  border: none;
+  border-radius: 6px;
+  color: var(--button-text);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.reset-button:hover {
+  background-color: var(--button-hover-bg-red);
+  text-shadow: 0px 0px 2px var(--white);
+}
+
+.reset-button:active {
+  background-color: var(--button-active-bg-red);
+}
+
+.adding-button {
+  width: 45%;
+  padding: 10px;
+  margin-left: 10%;
   font-size: 16px;
   background-color: var(--light-green);
   border: none;
@@ -45,12 +74,57 @@
   transition: background-color 0.3s;
 }
 
-.add-container button:hover {
-  background-color: var(--button-hover-bg);
+.adding-button:hover {
+  background-color: var(--button-hover-bg-green);
+  text-shadow: 0px 0px 2px var(--white);
+}
+
+.adding-button:active {
+  background-color: var(--button-active-bg-green);
 }
 
 .error-message {
   color: var(--red);
   margin-bottom: 10px;
   text-align: center;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  z-index: 1000;
+}
+
+.popup p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.popup-cancel {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+.popup-reset {
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 10px;
+  border-radius: 5px;
 }

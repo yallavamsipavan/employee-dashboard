@@ -10,9 +10,12 @@
   --light-grey: #ccc;
   --light-blue: #3498db;
   --light-green: #22933a;
-  --button-hover-bg: var(--light-green);
+  --button-hover-bg-green: #44de66;
+  --button-hover-bg-red: #f83a3a;
+  --button-active-bg-green: #16823a;
+  --button-active-bg-red: #c30000;
   --button-text: var(--white);
-  --red: red;
+  --red: #e60101;
 
   --homepage-bg: #f9f9f9;
   --homepage-shadow: var(--container-shadow-color);

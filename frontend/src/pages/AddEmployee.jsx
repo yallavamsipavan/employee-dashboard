@@ -18,6 +18,7 @@ function AddEmployee() {
   const [image, setImage] = useState(null);
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const [confirmReset, setConfirmReset] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -28,26 +29,33 @@ function AddEmployee() {
     setImage(e.target.files[0]);
   };
 
+  const resetForm = () => {
+    setForm({ name: '', email: '', position: '', salary: '', experience: '', phonenum: '' });
+    setImage(null);
+    setError('');
+    setConfirmReset(false);
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const rawName = form.name;
-    if (/\d/.test(rawName)) {
-      setError("Name should not contain numbers");
+    if(!/^[a-zA-Z\s.]+$/.test(rawName)) {
+      setError("Name should not contains digits or special characters");
       return;
     }
-    if (rawName.length > 100) {
+    if(rawName.length > 100) {
       setError("Name should be at most 100 characters");
       return;
     }
-    if (!/^\d+$/.test(form.phonenum)) {
+    if(!/^\d+$/.test(form.phonenum)) {
       setError("Phone number should contain only digits");
       return;
     }
-    if (!isValidPhone(form.phonenum)) {
+    if(!isValidPhone(form.phonenum)) {
       setError("Phone number must be exactly 10 digits");
       return;
     }
-    if (!isValidEmail(form.email)) {
+    if(!isValidEmail(form.email)) {
       setError("Invalid email format");
       return;
     }
@@ -79,15 +87,25 @@ function AddEmployee() {
         <h2>Add Employee</h2>
         {error && <p className="error-message">{error}</p>}
         <form onSubmit={handleSubmit}>
-          <input name="name" placeholder="Name" onChange={handleChange} required /><br />
-          <input name="email" placeholder="Email" onChange={handleChange} required /><br />
-          <input name="position" placeholder="Position" onChange={handleChange} required /><br />
-          <input name="salary" type="number" placeholder="Salary" onChange={handleChange} required /><br />
-          <input name="experience" type="number" placeholder="Experience" onChange={handleChange} required /><br />
-          <input name="phonenum" placeholder="Contact Number" onChange={handleChange} required /><br />
+          <input name="name" placeholder="Name" value={form.name} onChange={handleChange} required /><br />
+          <input name="email" placeholder="Email" value={form.email} onChange={handleChange} required /><br />
+          <input name="position" placeholder="Position" value={form.position} onChange={handleChange} required /><br />
+          <input name="salary" type="number" placeholder="Salary" value={form.salary} onChange={handleChange} required /><br />
+          <input name="experience" type="number" placeholder="Experience" value={form.experience} onChange={handleChange} required /><br />
+          <input name="phonenum" placeholder="Contact Number" value={form.phonenum} onChange={handleChange} required /><br />
           <input type="file" name="image" accept="image/*" onChange={handleFileChange} /><br />
-          <button type="submit">Add</button>
+          <div className="buttons">
+            <button className="reset-button" type="button" onClick={() => setConfirmReset(true)}>Reset</button>
+            <button className="adding-button" type="submit" >Add</button>
+          </div>
         </form>
+        {confirmReset && (
+          <div className="popup">
+            <p>Do you want to reset the above data?</p>
+            <button className="popup-cancel" onClick={() => setConfirmReset(false)}>Cancel</button>
+            <button className="popup-reset" onClick={resetForm}>Reset</button>
+          </div>
+        )}
       </div>
     </div>
   );

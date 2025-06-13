@@ -1,6 +1,6 @@
 @import url('./rootcss.css');
 
-.homepage-container {
+.dashboard-container {
   height: fit-content;
   display: flex;
   flex-direction: column;
@@ -13,7 +13,7 @@
   font-family: var(--font-family-base);
 }
 
-.homepage-title {
+.dashboard-title {
   text-align: center;
   font-size: 2.2rem;
   color: var(--grey);
@@ -24,7 +24,7 @@
 }
 
 @media (max-width: 768px) {
-  .homepage-title {
+  .dashboard-title {
     font-size: 1.7rem;
   }
 }

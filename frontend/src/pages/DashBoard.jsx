@@ -2,14 +2,14 @@ import React from "react";
 import './DashBoard.css';
 import EmployeeList from './EmployeeList';
 
-const HomePage = () => {
+const DashBoard = () => {
   return (
-    <div className="homepage-container">
+    <div className="dashboard-container">
       <title>Dashboard</title>
-      <h2 className="homepage-title">Employee Dashboard</h2>
+      <h2 className="dashboard-title">Employee Dashboard</h2>
       <EmployeeList />
     </div>
   );
 };
 
-export default HomePage;
+export default DashBoard;

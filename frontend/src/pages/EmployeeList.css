@@ -201,3 +201,24 @@
   background-color: var(--green);
   color: var(--white);
 }
+
+.alert-group {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--green);
+  background-color: var(--white);
+  padding: 20px 40px;
+  border-radius: 10px;
+  font-size: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+  animation: fadeOut 3s forwards;
+  z-index: 1000;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { opacity: 0; }
+}

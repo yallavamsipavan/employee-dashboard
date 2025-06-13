@@ -11,6 +11,7 @@ const EmployeeList = () => {
   const [expMin, setExpMin] = useState("");
   const [expMax, setExpMax] = useState("");
   const [confirmDelete, setConfirmDelete] = useState(null);
+  const [deleteMessage, setDeleteMessage] = useState('');
 
   const fetchEmployees = async () => {
     try {
@@ -22,15 +23,19 @@ const EmployeeList = () => {
     }
   };
 
-  const deleteEmployee = async (id) => {
+  const deleteEmployee = async (id, name) => {
     try {
       await axios.delete(`http://localhost:8000/employees/${id}`);
       fetchEmployees();
       setConfirmDelete(null);
+      setDeleteMessage(`Employee ${name} deleted successfully`);
+      setTimeout(() => {
+        setDeleteMessage("");
+      }, 5000);
     } catch (err) {
-      console.error(`Error deleting employee: ${err}`);
+      console.error(`Error deleting Employee: ${err}`);
     }
-  };
+  }
 
   useEffect(() => {
     fetchEmployees();
@@ -56,6 +61,12 @@ const EmployeeList = () => {
 
   return (
     <div>
+      {deleteMessage && (
+        <div className="alert-group">
+          {deleteMessage}
+        </div>
+      )}
+
       <div className="search-filter-row">
         <input className="search-input" type="text" placeholder="Search by name..." value={searchTerm} onChange={(e) => {
             const term = e.target.value;
@@ -109,7 +120,7 @@ const EmployeeList = () => {
             <p>Do you want to delete <strong>{confirmDelete.name}</strong>?</p>
             <div className="filter-actions">
               <button className="btn small-btn-cancel" onClick={() => setConfirmDelete(null)}>Cancel</button>
-              <button className="btn small-btn-delete" onClick={() => deleteEmployee(confirmDelete.id)}>Okay</button>
+              <button className="btn small-btn-delete" onClick={() => deleteEmployee(confirmDelete.id, confirmDelete.name)}>Okay</button>
             </div>
           </div>
         </div>
