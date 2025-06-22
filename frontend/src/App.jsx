@@ -5,6 +5,7 @@ import AddEmployee from './pages/AddEmployee';
 import ProfilePage from './pages/ProfilePage';
 import DashBoard from './pages/DashBoard';
 import './App.css';
+import PageNotFound from './pages/PageNotFound';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/dashboard" element={<DashBoard/>} />
             <Route path="/add" element={<AddEmployee/>} />
             <Route path="/profile/:id" element={<ProfilePage />} />
+            <Route path="/*" element={<PageNotFound />} />
           </Routes>
         </Router>
       </div>

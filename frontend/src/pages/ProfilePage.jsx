@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import "./ProfilePage.css";
+import ProfileNotFoundPage from "./ProfileNotFound";
 
 const ProfilePage = () => {
   const { id } = useParams();
   const [employee, setEmployee] = useState(null);
+  const [notFound, setNotFound] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,13 +16,15 @@ const ProfilePage = () => {
         const res = await axios.get(`http://localhost:8000/employees/${id}`);
         setEmployee(res.data);
       } catch (error) {
-        console.error(`Error fetching employee profile: ${error}`);
+        if(error.response && error.response.status === 404) setNotFound(true);
+        else console.error(`Error fetching employee profile: ${error}`);
       }
     };
     fetchEmployee();
   }, [id]);
 
-  if (!employee) return (<div className="loading">Loading...</div>);
+  if(notFound) return (<ProfileNotFoundPage/>);
+  if(!employee) return (<div className="loading">Loading...</div>);
 
   return (
     <div className="profile-container">

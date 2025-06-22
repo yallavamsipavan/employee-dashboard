@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AddEmployee.css';
 
@@ -19,6 +19,7 @@ function AddEmployee() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const [confirmReset, setConfirmReset] = useState(false);
+  const fileInputRef = useRef(null);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -34,7 +35,8 @@ function AddEmployee() {
     setImage(null);
     setError('');
     setConfirmReset(false);
-  }
+    if(fileInputRef.current) fileInputRef.current.value = '';
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -93,7 +95,7 @@ function AddEmployee() {
           <input name="salary" type="number" placeholder="Salary" value={form.salary} onChange={handleChange} required /><br />
           <input name="experience" type="number" placeholder="Experience" value={form.experience} onChange={handleChange} required /><br />
           <input name="phonenum" placeholder="Contact Number" value={form.phonenum} onChange={handleChange} required /><br />
-          <input type="file" name="image" accept="image/*" onChange={handleFileChange} /><br />
+          <input type="file" name="image" accept="image/*" onChange={handleFileChange} ref={fileInputRef} /><br />
           <div className="buttons">
             <button className="reset-button" type="button" onClick={() => setConfirmReset(true)}>Reset</button>
             <button className="adding-button" type="submit" >Add</button>

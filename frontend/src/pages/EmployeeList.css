@@ -211,7 +211,7 @@
   background-color: var(--white);
   padding: 20px 40px;
   border-radius: 10px;
-  font-size: 30px;
+  font-size: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
   animation: fadeOut 3s forwards;
   z-index: 1000;
