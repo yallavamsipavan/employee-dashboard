@@ -7,10 +7,10 @@ const isValidPhone = (phone) => /^\d{10}$/.test(phone);
 
 const formatName = (rawName) => {
   return rawName.split(/[\s.]+|(?<=\.)\s*/).filter(Boolean).map(part => {
-      if (part.length === 1) return part.toUpperCase() + ".";
-      if (part.endsWith(".")) return part[0].toUpperCase() + ".";
-      return part[0].toUpperCase() + part.slice(1).toLowerCase();
-    }).join(" ");
+    if (part.length === 1) return part.toUpperCase() + ".";
+    if (part.endsWith(".")) return part[0].toUpperCase() + ".";
+    return part[0].toUpperCase() + part.slice(1).toLowerCase();
+  }).join(" ");
 };
 
 function AddEmployee() {
